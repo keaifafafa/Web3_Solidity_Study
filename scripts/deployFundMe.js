@@ -7,7 +7,7 @@ async function main() {
     // create factory
     const fundMeFactory = await ethers.getContractFactory("FundMe")
     // deploy contract from factory
-    const fundMe        = await fundMeFactory.deploy(10)
+    const fundMe        = await fundMeFactory.deploy(300)
     // confirm contract has been in in-chain, 确保合约已经在链上
     await fundMe.waitForDeployment()
     console.log(`contract has been deployed successfully, contract address is ${fundMe.target}`)

@@ -1,5 +1,6 @@
 require("@nomicfoundation/hardhat-toolbox");
 require("@chainlink/env-enc").config();
+require("./tasks");
 
 const SEPOLIA_URL = process.env.SEPOLIA_URL
 const PRIVATE_KEY = process.env.PRIVATE_KEY
@@ -24,6 +25,7 @@ module.exports = {
     apiKey: {
       sepolia: API_KEY
     },
+    // resolve verify in sepolia timeout
     customChains: [
       {
         network: "rinkeby",
