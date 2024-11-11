@@ -11,15 +11,21 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract MyToken is ERC721, ERC721Enumerable, ERC721URIStorage, ERC721Burnable, Ownable {
     uint256 private _nextTokenId;
 
-    constructor(address initialOwner)
-        ERC721("MyToken", "MTK")
-        Ownable(initialOwner)
+    // metadata
+    // string constant META_DATA = "https://well-lavender-goat.myfilebase.com/ipfs/QmfNZncwMHKuGzDJJVT2qbKXBMHHJiuophUvJQski2XnQK";
+     string constant META_DATA = "ipfs://QmfNZncwMHKuGzDJJVT2qbKXBMHHJiuophUvJQski2XnQK";
+
+    constructor(string memory tokenName, string memory tokenSymbol)
+        ERC721(tokenName, tokenSymbol)
+        // Ownable(initialOwner)
+        // convenient for test
+        Ownable(msg.msg.sender)
     {}
 
-    function safeMint(address to, string memory uri) public onlyOwner {
+    function safeMint(address to) public onlyOwner {
         uint256 tokenId = _nextTokenId++;
         _safeMint(to, tokenId);
-        _setTokenURI(tokenId, uri);
+        _setTokenURI(tokenId, META_DATA);
     }
 
     // The following functions are overrides required by Solidity.
